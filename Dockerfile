@@ -1,5 +1,5 @@
 
-FROM openjdk:8
+FROM amazoncorretto:11-alpine-jdk
 
 MAINTAINER Luciana
 

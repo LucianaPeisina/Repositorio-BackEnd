@@ -15,6 +15,7 @@ public class Usuario {
 
     private String email;
     private String password;
+    
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JoinColumn(name = "dispositivo_id")
@@ -23,6 +24,10 @@ public class Usuario {
     @OneToOne
     @JoinColumn(name = "persona_id")
     private Persona persona;
+    public Usuario() {
+    // Constructor vacío requerido por Hibernate
+    }
+
 
     public Usuario(String email, String password, Dispositivo dispositivo, Persona persona) {
         this.email = email;

@@ -1,3 +1,5 @@
+EXPOSE 8080
+
 FROM openjdk:8
 
 MAINTAINER Luciana

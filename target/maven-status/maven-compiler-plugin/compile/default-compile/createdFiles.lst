@@ -24,6 +24,7 @@ com\portfolio\miportfolioweb\Persona.class
 com\portfolio\miportfolioweb\Skills.class
 com\portfolio\miportfolioweb\IBlandasService.class
 com\portfolio\miportfolioweb\IUsuarioService.class
+.netbeans_automatic_build
 com\portfolio\miportfolioweb\IExperienciaService.class
 com\portfolio\miportfolioweb\BlandasRepository.class
 com\portfolio\miportfolioweb\TipoRepository.class

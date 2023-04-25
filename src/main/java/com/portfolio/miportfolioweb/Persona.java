@@ -25,6 +25,7 @@ public class Persona {
     private String sobreMi;
     private String urlFoto;
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+    
     private Usuario usuario;
 
     // getters y setters

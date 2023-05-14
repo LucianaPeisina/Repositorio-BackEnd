@@ -19,8 +19,16 @@ public class Duras {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-     private Usuario usuario;
+    @JoinColumn(name = "persona_id")
+    private Persona persona;
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setUsuario(Persona persona) {
+        this.persona = persona;
+    }
 
     private String num;
     private String nombre;
@@ -29,9 +37,9 @@ public class Duras {
     public Duras() {
     }
     
-    public Duras(Long id, Usuario usuario, String num, String nombre, String nivel) {
+    public Duras(Long id, Persona persona, String num, String nombre, String nivel) {
         this.id=id;
-        this.usuario= usuario;
+        this.persona= persona;
         this.num = num;
         this.nombre = nombre;
         this.nivel = nivel;

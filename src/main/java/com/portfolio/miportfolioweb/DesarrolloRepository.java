@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DesarrolloRepository extends JpaRepository<Desarrollo, Long> {
-    List<Desarrollo> findByUsuarioId(Long idUsuario);
+    List<Desarrollo> findByPersonaId(Long idPersona);
 }

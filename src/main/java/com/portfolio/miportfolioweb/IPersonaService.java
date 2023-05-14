@@ -11,11 +11,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface IPersonaService {
-    public List <Persona> verPersonas(Long idUsuario);
-    
-    public void crearPersona (Persona per);
+
+    List<Persona> verPersonas();
+
+             
+    public Persona crearPersona (Persona per);
     
     public void borrarPersona (Long id);
     
     public Persona buscarPersona (Long id);
+    
+    public Persona actualizarPersona(Persona per);
+
+
 }

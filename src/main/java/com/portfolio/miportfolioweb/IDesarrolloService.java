@@ -5,11 +5,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface IDesarrolloService {
-    public List<Desarrollo> verDesarrollo(Long idUsuario);
+    public List<Desarrollo> verDesarrollo(Long idPersona);
 
-    public void crearDesarrollo(Desarrollo dev);
+    public Desarrollo crearDesarrollo(Desarrollo dev);
 
     public void borrarDesarrollo(Long id);
 
     public Desarrollo buscarDesarrollo(Long id);
+
+    public Desarrollo actualizarDesarrollo(Desarrollo desarrollo);
 }

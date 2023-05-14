@@ -21,20 +21,29 @@ public class Skills {
     private String logo;
     private String nombre;
     private String nivel;
-
+    
+    
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-     private Usuario usuario;
+    @JoinColumn(name = "persona_id")
+    private Persona persona;
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setUsuario(Persona persona) {
+        this.persona = persona;
+    }
 
 
 
     public Skills(){
     }
     
-    public Skills(String logo, String nombre, String nivel, Usuario usuario){
+    public Skills(String logo, String nombre, String nivel, Persona persona){
         this.logo = logo;
         this.nombre = nombre;
         this.nivel = nivel;
-        this.usuario = usuario;
+        this.persona = persona;
     }
 }

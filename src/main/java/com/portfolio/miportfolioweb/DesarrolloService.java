@@ -1,44 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.portfolio.miportfolioweb;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Luciana
- */// Servicio para la entidad Proyecto
-
-
-// Servicio para la entidad Desarrollo
 @Service
 public class DesarrolloService implements IDesarrolloService {
-    
+
     @Autowired
-    public DesarrolloRepository desarrolloRepo;
+    private DesarrolloRepository desarrolloRepository;
 
     @Override
-    public List<Desarrollo> verDesarrollo(Long idUsuario) {
-        return desarrolloRepo.findByUsuarioId(idUsuario);
+    public Desarrollo crearDesarrollo(Desarrollo desarrollo) {
+        return desarrolloRepository.save(desarrollo);
+    }
+    
+    @Override    
+    public Desarrollo actualizarDesarrollo(Desarrollo desarrollo) {
+        return desarrolloRepository.save(desarrollo);
     }
 
     @Override
-    public void crearDesarrollo(Desarrollo desarrollo) {
-        desarrolloRepo.save(desarrollo);
+    public Desarrollo buscarDesarrollo(Long desarrolloId) {
+        return desarrolloRepository.findById(desarrolloId).orElse(null);
     }
 
     @Override
-    public void borrarDesarrollo(Long id) {
-        desarrolloRepo.deleteById(id);
+    public List<Desarrollo> verDesarrollo(Long idPersona) {
+        return desarrolloRepository.findByPersonaId(idPersona);
     }
-
-    @Override
-    public Desarrollo buscarDesarrollo(Long id) {
-        return desarrolloRepo.findById(id).orElse(null);
+    @Override    
+    public void borrarDesarrollo(Long desarrolloId) {
+        desarrolloRepository.deleteById(desarrolloId);
     }
 }
-

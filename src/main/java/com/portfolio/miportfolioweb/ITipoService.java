@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ITipoService {
 
-    public void crearTipo(Tipo dev);
+    public Tipo crearTipo(Tipo dev);
 
     public void borrarTipo(Long id);
 

@@ -1,12 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.portfolio.miportfolioweb;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -14,33 +13,36 @@ import org.springframework.stereotype.Service;
  */
 // Servicio de Proyectos
 
-// Implementación del Servicio de Proyectos
-// Servicio para la entidad Proyecto
+
 @Service
-public class ProyectosService implements IProyectosService {
-    
+public class ProyectosService implements IProyectosService{
+
     @Autowired
-    public ProyectosRepository proyectoRepo;
+    private ProyectosRepository proyectosRepository;
 
     @Override
-    public List<Proyectos> verProyectos(Long idUsuario) {
-        return proyectoRepo.findByUsuarioId(idUsuario);
+    public Proyectos agregarProyecto(@RequestBody Proyectos proyecto) {
+        return proyectosRepository.save(proyecto);
+    }
+    
+    @Override
+    public Proyectos buscarProyecto(@PathVariable Long proyectoId) {
+        return proyectosRepository.findById(proyectoId).orElse(null);
+    }
+    
+    @Override
+    public List<Proyectos> verProyectos(Long idPersona) {
+        return proyectosRepository.findByPersonaId(idPersona);
     }
 
     @Override
-    public void crearProyecto(Proyectos proyecto) {
-        proyectoRepo.save(proyecto);
+    public Proyectos actualizarProyecto(@RequestBody Proyectos proyecto) {
+        return proyectosRepository.save(proyecto);
     }
 
     @Override
-    public void borrarProyecto(Long id) {
-        proyectoRepo.deleteById(id);
-    }
-
-    @Override
-    public Proyectos buscarProyecto(Long id) {
-        return proyectoRepo.findById(id).orElse(null);
+    
+    public void borrarProyecto(@PathVariable Long proyectoId) {
+        proyectosRepository.deleteById(proyectoId);
     }
 }
-
-

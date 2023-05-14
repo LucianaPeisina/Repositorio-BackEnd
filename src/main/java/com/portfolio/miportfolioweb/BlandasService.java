@@ -7,27 +7,32 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BlandasService implements IBlandasService {
-    
+
     @Autowired
-    public BlandasRepository blandasRepo;
+    private BlandasRepository blandasRepository;
 
     @Override
-    public List<Blandas> verBlandas(Long idUsuario) {
-        return blandasRepo.findByUsuarioId(idUsuario);
+    public  Blandas crearBlanda(Blandas blanda) {
+        return blandasRepository.save(blanda);
+    }
+    
+    @Override    
+    public Blandas actualizarBlanda(Blandas blanda) {
+        return blandasRepository.save(blanda);
     }
 
     @Override
-    public void crearBlanda(Blandas blandas) {
-        blandasRepo.save(blandas);
+    public Blandas buscarBlanda(Long blandaId) {
+        return blandasRepository.findById(blandaId).orElse(null);
     }
 
     @Override
-    public void borrarBlanda(Long id) {
-        blandasRepo.deleteById(id);
+    public List<Blandas> verBlandas(Long idPersona) {
+        return blandasRepository.findByPersonaId(idPersona);
     }
 
-    @Override
-    public Blandas buscarBlanda(Long id) {
-        return blandasRepo.findById(id).orElse(null);
+    @Override    
+    public void borrarBlanda(Long blandaId) {
+        blandasRepository.deleteById(blandaId);
     }
 }

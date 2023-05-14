@@ -5,11 +5,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ISkillsService {
-    public List<Skills> verSkills(Long idUsuario);
+    public List<Skills> verSkills(Long idPersona);
 
-    public void crearSkill(Skills ski);
+    public Skills crearSkill(Skills ski);
 
     public void borrarSkill(Long id);
 
     public Skills buscarSkill(Long id);
+    
+    public Skills actualizarSkills(Skills skills);
 }

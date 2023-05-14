@@ -38,12 +38,19 @@ public class Experiencia {
     private String extra;
     
     private int estado;
-    
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-     private Usuario usuario;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "persona_id")
+    private Persona persona;
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setUsuario(Persona persona) {
+        this.persona = persona;
+    }
+
     @ManyToOne
     @JoinColumn(name = "tipo_id")
     private Tipo tipo;
@@ -51,7 +58,7 @@ public class Experiencia {
     public Experiencia() {
     }
 
-    public Experiencia(int id, String clase, String icono, String nombre, String lugar, Date start, String end, String contenido, String extra, int estado, Usuario usuario, Tipo tipo) {
+    public Experiencia(int id, String clase, String icono, String nombre, String lugar, Date start, String end, String contenido, String extra, int estado, Persona persona, Tipo tipo) {
         this.id = id;
         this.clase = clase;
         this.icono = icono;
@@ -62,7 +69,7 @@ public class Experiencia {
         this.contenido = contenido;
         this.extra = extra;
         this.estado = estado;
-        this.usuario = usuario;
+        this.persona = persona;
         this.tipo = tipo;
     }
 }

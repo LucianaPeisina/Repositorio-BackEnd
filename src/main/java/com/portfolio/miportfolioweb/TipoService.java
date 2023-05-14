@@ -16,8 +16,8 @@ public class TipoService implements ITipoService {
     public TipoRepository tipoRepo;
 
     @Override
-    public void crearTipo(Tipo tipo) {
-        tipoRepo.save(tipo);
+    public Tipo crearTipo(Tipo tipo) {
+        return tipoRepo.save(tipo);
     }
 
     @Override

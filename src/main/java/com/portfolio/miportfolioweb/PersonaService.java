@@ -1,42 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.portfolio.miportfolioweb;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
-/**
- *
- * @author Luciana
- */
-
 @Service
-public class PersonaService implements IPersonaService{
+public class PersonaService implements IPersonaService {
+
     @Autowired
-    public PersonaRepository persoRepo;
+    private PersonaRepository personaRepository;
 
     @Override
-    public List<Persona> verPersonas(Long idUsuario) {
-        return persoRepo.findByUsuarioId(idUsuario);
+    public Persona crearPersona(Persona persona) {
+        return personaRepository.save(persona);
+    }
+    
+    @Override    
+    public Persona actualizarPersona(Persona persona) {
+        return personaRepository.save(persona);
     }
 
     @Override
-    public void crearPersona(Persona per) {
-        persoRepo.save(per);
+    public Persona buscarPersona(Long personaId) {
+        return personaRepository.findById(personaId).orElse(null);
     }
 
     @Override
-    public void borrarPersona(Long id) {
-        persoRepo.deleteById(id);
+    public List<Persona> verPersonas() {
+        return personaRepository.findAll();
     }
 
-    @Override
-    public Persona buscarPersona(Long id) {
-     return persoRepo.findById(id).orElse(null);
+    @Override    
+    public void borrarPersona(Long personaId) {
+        personaRepository.deleteById(personaId);
     }
 }

@@ -22,19 +22,27 @@ public class Proyectos {
     private String enlace;
     
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-     private Usuario usuario;
+    @JoinColumn(name = "persona_id")
+    private Persona persona;
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setUsuario(Persona persona) {
+        this.persona = persona;
+    }
 
 
     public Proyectos() {
     }
 
-    public Proyectos(Long id, String img, String nombre, String descrip, String enlace, Usuario usuario) {
+    public Proyectos(Long id, String img, String nombre, String descrip, String enlace, Persona persona) {
         this.id = id;
         this.img = img;
         this.nombre = nombre;
         this.descrip = descrip;
         this.enlace = enlace;
-        this.usuario = usuario;
+        this.persona = persona;
     }
 }

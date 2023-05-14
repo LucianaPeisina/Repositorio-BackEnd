@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package com.portfolio.miportfolioweb;
 
 
@@ -12,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BlandasRepository extends JpaRepository<Blandas, Long> {
-    List<Blandas> findByUsuarioId(Long idUsuario);
+    List<Blandas> findByPersonaId(Long idPersona);
 }
 
     

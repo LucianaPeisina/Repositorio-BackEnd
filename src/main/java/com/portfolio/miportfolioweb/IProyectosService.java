@@ -1,15 +1,18 @@
 package com.portfolio.miportfolioweb;
 
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface IProyectosService {
-    public List<Proyectos> verProyectos(Long idUsuario);
+    public Proyectos agregarProyecto(Proyectos proyecto);
 
-    public void crearProyecto(Proyectos pro);
+    List<Proyectos> verProyectos(Long idPersona);
 
-    public void borrarProyecto(Long id);
+    void borrarProyecto(Long id);
 
     public Proyectos buscarProyecto(Long id);
+
+    public Proyectos actualizarProyecto(Proyectos proyecto);
 }

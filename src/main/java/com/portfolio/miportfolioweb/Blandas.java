@@ -13,21 +13,29 @@ public class Blandas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
 
     private String nombre;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    @JoinColumn(name = "persona_id")
+    private Persona persona;
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 
 
     public Blandas() {
     }
 
-    public Blandas(String nombre, Usuario usuario) {
+    public Blandas(String nombre, Persona persona) {
         this.nombre = nombre;
-        this.usuario = usuario;
+        this.persona = persona;
     }
 
-    // getters y setters
 }

@@ -6,27 +6,32 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ExperienciaService implements IExperienciaService {
-    
+
     @Autowired
-    public ExperienciaRepository experienciaRepo;
+    private ExperienciaRepository experienciasRepository;
 
     @Override
-    public List<Experiencia> verExperiencias(Long idUsuario) {
-        return experienciaRepo.findByUsuarioId(idUsuario);
+    public Experiencia crearExperiencia(Experiencia experiencia) {
+        return experienciasRepository.save(experiencia);
+    }
+    
+    @Override    
+    public Experiencia actualizarExperiencia(Experiencia experiencia) {
+        return experienciasRepository.save(experiencia);
     }
 
     @Override
-    public void crearExperiencia(Experiencia experiencia) {
-        experienciaRepo.save(experiencia);
+    public Experiencia buscarExperiencia(Long experienciaId) {
+        return experienciasRepository.findById(experienciaId).orElse(null);
     }
 
     @Override
-    public void borrarExperiencia(Long id) {
-        experienciaRepo.deleteById(id);
+    public List<Experiencia> verExperiencias(Long idPersona) {
+        return experienciasRepository.findByPersonaId(idPersona);
     }
-
-    @Override
-    public Experiencia buscarExperiencia(Long id) {
-        return experienciaRepo.findById(id).orElse(null);
+    
+    @Override    
+    public void borrarExperiencia(Long experienciaId) {
+        experienciasRepository.deleteById(experienciaId);
     }
 }

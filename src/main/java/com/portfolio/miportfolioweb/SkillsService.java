@@ -5,34 +5,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Luciana
- */
-// Servicio para la entidad Skill
 @Service
 public class SkillsService implements ISkillsService {
-    
+
     @Autowired
-    public SkillsRepository skillRepo;
+    private SkillsRepository skillsRepository;
 
     @Override
-    public List<Skills> verSkills(Long idUsuario) {
-        return skillRepo.findByUsuarioId(idUsuario);
+    public Skills crearSkill(Skills ski) {
+        return skillsRepository.save(ski);
+    }
+    
+    @Override    
+    public Skills actualizarSkills(Skills skill) {
+        return skillsRepository.save(skill);
     }
 
     @Override
-    public void crearSkill(Skills skill) {
-        skillRepo.save(skill);
+    public Skills buscarSkill(Long skillId) {
+        return skillsRepository.findById(skillId).orElse(null);
     }
 
     @Override
-    public void borrarSkill(Long id) {
-        skillRepo.deleteById(id);
+    public List<Skills> verSkills(Long idPersona) {
+        return skillsRepository.findByPersonaId(idPersona);
     }
 
-    @Override
-    public Skills buscarSkill(Long id) {
-        return skillRepo.findById(id).orElse(null);
+    @Override    
+    public void borrarSkill(Long skillId) {
+        skillsRepository.deleteById(skillId);
     }
 }
+
+

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DurasRepository extends JpaRepository<Duras, Long> {
-    List<Duras> findByUsuarioId(Long idUsuario);
+    List<Duras> findByPersonaId(Long idPersona);
 }

@@ -27,8 +27,8 @@ public class SkillsService implements ISkillsService {
     }
 
     @Override
-    public List<Skills> verSkills(Long idPersona) {
-        return skillsRepository.findByPersonaId(idPersona);
+    public List<Skills> verSkills() {
+        return skillsRepository.findAll();
     }
 
     @Override    

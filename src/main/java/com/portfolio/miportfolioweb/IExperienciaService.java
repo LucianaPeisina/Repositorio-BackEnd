@@ -3,7 +3,7 @@ package com.portfolio.miportfolioweb;
 import java.util.List;
 
 public interface IExperienciaService {
-    public List<Experiencia> verExperiencias(Long idPersona);
+    public List<Experiencia> verExperiencias();
     
     public Experiencia crearExperiencia(Experiencia experiencia);
     

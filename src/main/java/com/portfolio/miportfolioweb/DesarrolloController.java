@@ -46,10 +46,11 @@ public class DesarrolloController {
     }
 
 
+
     @GetMapping("/")
     @ResponseBody
-    public List<Desarrollo> verDesarrollo(Long idPersona) {
-        return desarrolloService.verDesarrollo(idPersona);
+    public List<Desarrollo> verDesarrollo() {
+        return desarrolloService.verDesarrollo();
     }
     
     @PutMapping("/")

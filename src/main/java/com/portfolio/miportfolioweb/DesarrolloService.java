@@ -26,8 +26,8 @@ public class DesarrolloService implements IDesarrolloService {
     }
 
     @Override
-    public List<Desarrollo> verDesarrollo(Long idPersona) {
-        return desarrolloRepository.findByPersonaId(idPersona);
+    public List<Desarrollo> verDesarrollo() {
+        return desarrolloRepository.findAll();
     }
     @Override    
     public void borrarDesarrollo(Long desarrolloId) {

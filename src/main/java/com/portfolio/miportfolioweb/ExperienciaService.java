@@ -26,8 +26,8 @@ public class ExperienciaService implements IExperienciaService {
     }
 
     @Override
-    public List<Experiencia> verExperiencias(Long idPersona) {
-        return experienciasRepository.findByPersonaId(idPersona);
+    public List<Experiencia> verExperiencias() {
+        return experienciasRepository.findAll();
     }
     
     @Override    

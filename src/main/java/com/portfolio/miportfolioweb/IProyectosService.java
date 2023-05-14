@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public interface IProyectosService {
     public Proyectos agregarProyecto(Proyectos proyecto);
 
-    List<Proyectos> verProyectos(Long idPersona);
+    List<Proyectos> verProyectos();
 
     void borrarProyecto(Long id);
 

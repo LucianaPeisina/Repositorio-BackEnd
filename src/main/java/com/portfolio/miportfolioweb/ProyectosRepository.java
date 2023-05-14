@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProyectosRepository extends JpaRepository<Proyectos, Long> {
-    List<Proyectos> findByPersonaId(Long idPersona);
+    List<Proyectos> findAll();
 }

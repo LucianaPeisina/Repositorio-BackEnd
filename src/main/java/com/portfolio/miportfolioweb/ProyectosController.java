@@ -37,8 +37,8 @@ public class ProyectosController {
 
     @GetMapping("/")
     @ResponseBody
-    public List<Proyectos> verProyectos(@PathVariable Long idPersona) {
-        return proyectosService.verProyectos(idPersona);
+    public List<Proyectos> verProyectos() {
+        return proyectosService.verProyectos();
     }
 
     @DeleteMapping("/{id}")

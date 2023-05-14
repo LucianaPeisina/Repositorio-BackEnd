@@ -27,30 +27,30 @@ public class ExperienciaController {
     private IExperienciaService experienciaService;
     
    @PostMapping("/")
-public ResponseEntity<Experiencia> agregarExperiencia(@RequestBody Experiencia experiencia) {
-    return ResponseEntity.ok(experienciaService.crearExperiencia(experiencia));
-}
+    public ResponseEntity<Experiencia> agregarExperiencia(@RequestBody Experiencia experiencia) {
+        return ResponseEntity.ok(experienciaService.crearExperiencia(experiencia));
+    }
 
-@GetMapping("/")
-@ResponseBody
-public List<Experiencia> verExperiencia(@PathVariable Long idPersona) {
-    return experienciaService.verExperiencias(idPersona);
-}
+    @GetMapping("/")
+    @ResponseBody
+    public List<Experiencia> verExperiencia() {
+        return experienciaService.verExperiencias();
+    }
 
-@DeleteMapping("/{id}")
-public void borrarExperiencia(@PathVariable Long id) {
-    experienciaService.borrarExperiencia(id);
-}
+    @DeleteMapping("/{id}")
+    public void borrarExperiencia(@PathVariable Long id) {
+        experienciaService.borrarExperiencia(id);
+    }
 
-@GetMapping("/{id}")
-public Experiencia buscarExperiencia(@PathVariable Long id) {
-    return experienciaService.buscarExperiencia(id);
-}
+    @GetMapping("/{id}")
+    public Experiencia buscarExperiencia(@PathVariable Long id) {
+        return experienciaService.buscarExperiencia(id);
+    }
 
-@PutMapping("/")
-public ResponseEntity<Experiencia> actualizarExperiencia(@RequestBody Experiencia experiencia) {
-    return ResponseEntity.ok(experienciaService.actualizarExperiencia(experiencia));
-}
+    @PutMapping("/")
+    public ResponseEntity<Experiencia> actualizarExperiencia(@RequestBody Experiencia experiencia) {
+        return ResponseEntity.ok(experienciaService.actualizarExperiencia(experiencia));
+    }
 
     
 }

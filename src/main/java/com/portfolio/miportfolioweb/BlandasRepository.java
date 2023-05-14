@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BlandasRepository extends JpaRepository<Blandas, Long> {
-    List<Blandas> findByPersonaId(Long idPersona);
+    List<Blandas> findAll();
 }
 
     

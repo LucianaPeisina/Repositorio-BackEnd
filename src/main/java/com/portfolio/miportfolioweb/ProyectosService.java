@@ -31,8 +31,8 @@ public class ProyectosService implements IProyectosService{
     }
     
     @Override
-    public List<Proyectos> verProyectos(Long idPersona) {
-        return proyectosRepository.findByPersonaId(idPersona);
+    public List<Proyectos> verProyectos() {
+        return proyectosRepository.findAll();
     }
 
     @Override

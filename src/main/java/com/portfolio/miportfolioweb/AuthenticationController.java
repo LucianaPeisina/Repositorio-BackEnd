@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.security.Principal;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 public class AuthenticationController {
@@ -50,6 +52,11 @@ public class AuthenticationController {
         User user = userRepository.findFirstByEmail(authenticationRequest.getUsername());
         final String jwt = jwtUtil.generateToken(authenticationRequest.getUsername());
         return new AuthenticationResponse(jwt);
+    }
+    
+    @GetMapping("/actual-usuario")
+    public User obtenerUsuarioActual(Principal principal){
+        return (User) this.userDetailsService.loadUserByUsername(principal.getName());
     }
 
 }

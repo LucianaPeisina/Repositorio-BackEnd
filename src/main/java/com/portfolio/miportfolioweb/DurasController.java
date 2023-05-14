@@ -36,8 +36,8 @@ public class DurasController {
    
     @GetMapping("/")
     @ResponseBody
-    public List<Duras> verDuras(@PathVariable Long idPersona) {
-        return durasService.verDuras(idPersona);
+    public List<Duras> verDuras() {
+        return durasService.verDuras();
     }
     
     @DeleteMapping("/{id}")

@@ -37,8 +37,8 @@ public class SkillsController {
 
     @GetMapping("/")
     @ResponseBody
-    public List<Skills> verSkills(@PathVariable Long idPersona) {
-        return skillsService.verSkills(idPersona);
+    public List<Skills> verSkills() {
+        return skillsService.verSkills();
     }
 
     @DeleteMapping("/{id}")

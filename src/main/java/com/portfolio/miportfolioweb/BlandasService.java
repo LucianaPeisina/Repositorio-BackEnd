@@ -27,8 +27,8 @@ public class BlandasService implements IBlandasService {
     }
 
     @Override
-    public List<Blandas> verBlandas(Long idPersona) {
-        return blandasRepository.findByPersonaId(idPersona);
+    public List<Blandas> verBlandas() {
+        return blandasRepository.findAll();
     }
 
     @Override    

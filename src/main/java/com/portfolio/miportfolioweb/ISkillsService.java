@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ISkillsService {
-    public List<Skills> verSkills(Long idPersona);
+    public List<Skills> verSkills();
 
     public Skills crearSkill(Skills ski);
 

@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter
 public class Desarrollo {
     
     @Id
@@ -37,7 +40,8 @@ public class Desarrollo {
     public Desarrollo() {}
 
     //Constructor con campos
-    public Desarrollo( String logo, String nombre, String nivel, Persona persona ) {
+    public Desarrollo( Long id, String logo, String nombre, String nivel, Persona persona ) {
+        this.id=id;
         this.logo = logo;
         this.nombre = nombre;
         this.nivel = nivel;

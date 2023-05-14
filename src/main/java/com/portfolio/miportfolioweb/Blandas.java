@@ -6,8 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter
 public class Blandas {
 
     @Id
@@ -37,5 +40,15 @@ public class Blandas {
         this.nombre = nombre;
         this.persona = persona;
     }
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+   public String getNombre() {
+        return nombre;
+        
+        
+    }
+
 
 }

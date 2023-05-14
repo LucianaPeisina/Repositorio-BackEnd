@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ExperienciaRepository extends JpaRepository<Experiencia, Long> {
-    List<Experiencia> findByPersonaId(Long idPersona);
+    List<Experiencia> findAll();
 }

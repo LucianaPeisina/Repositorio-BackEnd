@@ -11,8 +11,8 @@ public class DurasService implements IDurasService {
     private DurasRepository duraRepo;
 
     @Override
-    public List<Duras> verDuras(Long idPersona) {
-        return duraRepo.findByPersonaId(idPersona);
+    public List<Duras> verDuras() {
+        return duraRepo.findAll();
     }
 
     @Override

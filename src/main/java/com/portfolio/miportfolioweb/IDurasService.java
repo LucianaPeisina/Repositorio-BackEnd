@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface IDurasService {
-    public List<Duras> verDuras(Long idPersona);
+    public List<Duras> verDuras();
 
     public Duras crearDura(Duras dur);
 

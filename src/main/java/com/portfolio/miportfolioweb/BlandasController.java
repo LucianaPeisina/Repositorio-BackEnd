@@ -35,8 +35,8 @@ public ResponseEntity<Blandas> agregarBlandas(@RequestBody Blandas blandas) {
 
 @GetMapping("/")
 @ResponseBody
-public List<Blandas> verBlandas(@PathVariable Long idPersona) {
-    return blandasService.verBlandas(idPersona);
+public List<Blandas> verBlandas() {
+    return blandasService.verBlandas();
 }
 
 @DeleteMapping("/{id}")

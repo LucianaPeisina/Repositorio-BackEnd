@@ -13,5 +13,5 @@ public interface IBlandasService {
     
     public Blandas actualizarBlanda(Blandas bla);
 
-    public List<Blandas> verBlandas(Long idPersona);
+    public List<Blandas> verBlandas();
 }

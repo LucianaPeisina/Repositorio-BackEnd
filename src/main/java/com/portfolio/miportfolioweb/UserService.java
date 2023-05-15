@@ -1,7 +1,9 @@
 package com.portfolio.miportfolioweb;
 
-public interface UserService {
-    UserDTO createUser(SignupDTO signupDTO);
 
-    boolean hasUserWithEmail(String email);
+
+public interface UserService {
+  String addUser(UserDTO UserDTO);
+
+  LoginResponse loginUser(LoginDTO loginDTO);
 }

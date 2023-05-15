@@ -13,20 +13,19 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String username;
 
     private String email;
 
     private String password;
 
-    private UserRole userRole;
 
 
     
@@ -34,4 +33,16 @@ public class User {
     @JoinColumn(name = "persona_id")
     private Persona persona;
     
+    
+ 
+    public User() {
+    }
+ 
+    public User(Long id, String username, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+ 
 }

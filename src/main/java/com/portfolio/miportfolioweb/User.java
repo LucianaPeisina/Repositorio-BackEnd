@@ -20,13 +20,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    private String name;
 
     private String email;
 
     private String password;
 
-
+    private UserRole userRole;
 
     
     @OneToOne
@@ -37,12 +37,14 @@ public class User {
  
     public User() {
     }
- 
-    public User(Long id, String username, String email, String password) {
+
+    public User(Long id, String name, String email, String password, UserRole userRole, Persona persona) {
         this.id = id;
-        this.username = username;
+        this.name = name;
         this.email = email;
         this.password = password;
+        this.userRole = userRole;
+        this.persona = persona;
     }
  
 }

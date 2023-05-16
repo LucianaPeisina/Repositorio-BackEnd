@@ -1,64 +1,34 @@
 package com.portfolio.miportfolioweb;
 
-
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
- 
 public class UserServiceImpl implements UserService {
- 
+
     @Autowired
-    private UserRepository UserRepo;
- 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
- 
- 
+    private UserRepository userRepository;
+
+
     @Override
-    public String addUser(UserDTO UserDTO) {
- 
-        User User = new User(
- 
-                UserDTO.getId(),
-                UserDTO.getUsername(),
-                UserDTO.getEmail(),
- 
-               this.passwordEncoder.encode(UserDTO.getPassword())
-        );
- 
-        UserRepo.save(User);
- 
-        return User.getUsername();
+    public UserDTO createUser(SignupDTO signupDTO) {
+        User user = new User();
+        user.setName(signupDTO.getName());
+        user.setEmail(signupDTO.getEmail());
+        user.setUserRole(UserRole.USER);
+        user.setPassword(new BCryptPasswordEncoder().encode(signupDTO.getPassword()));
+        User createdUser = userRepository.save(user);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(createdUser.getId());
+        userDTO.setName(createdUser.getName());
+        userDTO.setEmail(createdUser.getEmail());
+        userDTO.setUserRole(createdUser.getUserRole());
+        return userDTO;
     }
-    UserDTO UserDTO;
- 
+
     @Override
-    public LoginResponse  loginUser(LoginDTO loginDTO) {
-        String msg = "";
-        User User1 = UserRepo.findByEmail(loginDTO.getEmail());
-        if (User1 != null) {
-            String password = loginDTO.getPassword();
-            String encodedPassword = User1.getPassword();
-            Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
-            if (isPwdRight) {
-                Optional<User> User = UserRepo.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
-                if (User.isPresent()) {
-                    return new LoginResponse("Login Success", true);
-                } else {
-                    return new LoginResponse("Login Failed", false);
-                }
-            } else {
- 
-                return new LoginResponse("password Not Match", false);
-            }
-        }else {
-            return new LoginResponse("Email not exits", false);
-        }
+    public boolean hasUserWithEmail(String email) {
+        return userRepository.findFirstByEmail(email) != null;
     }
 }
-    
- 

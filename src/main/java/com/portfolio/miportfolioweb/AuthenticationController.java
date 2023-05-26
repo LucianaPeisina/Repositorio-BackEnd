@@ -1,8 +1,9 @@
 package com.portfolio.miportfolioweb;
-
-
-
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.el.parser.Token;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class AuthenticationController {
@@ -37,20 +36,31 @@ public class AuthenticationController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    public static final String TOKEN_PREFIX = "Bearer ";
+    public static final String HEADER_STRING = "Authorization";
+
     @PostMapping("/authenticate")
-    public AuthenticationResponse createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws BadCredentialsException, DisabledException, UsernameNotFoundException, IOException, JSONException, ServletException {
+    public void createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws BadCredentialsException, DisabledException, UsernameNotFoundException, IOException, JSONException, ServletException {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException("Incorrect username or password.");
         } catch (DisabledException disabledException) {
-            response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE, "User is not activated");
-            return null;
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "User is not activated");
+            return;
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        User user = userRepository.findFirstByEmail(authenticationRequest.getUsername());
-        final String jwt = jwtUtil.generateToken(authenticationRequest.getUsername());
-        return new AuthenticationResponse(jwt);
+        User user = userRepository.findFirstByEmail(userDetails.getUsername());
+        final String jwt = jwtUtil.generateToken(userDetails.getUsername());
+
+        response.getWriter().write(new JSONObject()
+                .put("userId", user.getId())
+                .put("role", user.getUserRole())
+                .toString()
+        );
+        response.addHeader("Access-Control-Expose-Headers", "Authorization");
+        response.addHeader("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header");
+        response.addHeader(HEADER_STRING, TOKEN_PREFIX + jwt);
     }
 
 }

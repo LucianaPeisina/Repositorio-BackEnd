@@ -1,6 +1,6 @@
 package com.portfolio.miportfolioweb;
 
-
+import javax.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 @Configuration
 @EnableWebSecurity
@@ -32,10 +33,9 @@ public class WebSecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(new AntPathRequestMatcher("/api/**"))
-                .authenticated()
-                .and()
+                .authenticated().and()
                 .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

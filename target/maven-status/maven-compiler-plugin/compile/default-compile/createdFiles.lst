@@ -22,6 +22,7 @@ com\portfolio\miportfolioweb\MiportfoliowebApplication.class
 com\portfolio\miportfolioweb\AuthenticationRequest.class
 com\portfolio\miportfolioweb\UserServiceImpl.class
 com\portfolio\miportfolioweb\DurasService.class
+com\portfolio\miportfolioweb\SimpleCorsFilter.class
 com\portfolio\miportfolioweb\ProyectosRepository.class
 com\portfolio\miportfolioweb\AuthenticationResponse.class
 com\portfolio\miportfolioweb\UserDetailsServiceImpl.class

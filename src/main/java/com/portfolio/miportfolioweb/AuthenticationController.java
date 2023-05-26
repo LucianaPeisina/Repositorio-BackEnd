@@ -17,9 +17,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RestController
 public class AuthenticationController {
+
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserService userService;
@@ -39,6 +44,7 @@ public class AuthenticationController {
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";
 
+
     @PostMapping("/authenticate")
     public void createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws BadCredentialsException, DisabledException, UsernameNotFoundException, IOException, JSONException, ServletException {
         try {
@@ -49,18 +55,23 @@ public class AuthenticationController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "User is not activated");
             return;
         }
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        User user = userRepository.findFirstByEmail(userDetails.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails.getUsername());
 
-        response.getWriter().write(new JSONObject()
-                .put("userId", user.getId())
-                .put("role", user.getUserRole())
-                .toString()
-        );
-        response.addHeader("Access-Control-Expose-Headers", "Authorization");
-        response.addHeader("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header");
-        response.addHeader(HEADER_STRING, TOKEN_PREFIX + jwt);
+        // Obtener los detalles del usuario desde la base de datos utilizando el userRepository o el servicio correspondiente
+        UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        User user = userRepository.findFirstByEmail(userDetails.getUsername());
+
+        // Comparar la contraseña encriptada almacenada en la base de datos con la proporcionada por el usuario
+        if (passwordEncoder.matches(authenticationRequest.getPassword(), user.getPassword())) {
+            final String jwt = jwtUtil.generateToken(userDetails.getUsername());
+
+            // Enviar solo el token de autenticación en la respuesta
+            response.addHeader("Access-Control-Expose-Headers", "Authorization");
+            response.addHeader("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header");
+            response.addHeader(HEADER_STRING, TOKEN_PREFIX + jwt);
+        } else {
+            throw new BadCredentialsException("Incorrect username or password.");
+        }
     }
+
 
 }

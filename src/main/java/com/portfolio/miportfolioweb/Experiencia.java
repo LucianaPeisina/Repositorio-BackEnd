@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import lombok.Getter;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Getter
 @Setter
@@ -18,7 +19,7 @@ public class Experiencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     
     private String clase;
     
@@ -28,7 +29,9 @@ public class Experiencia {
     
     private String lugar;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
+
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date start;
     
     private String end;
@@ -58,7 +61,7 @@ public class Experiencia {
     public Experiencia() {
     }
 
-    public Experiencia(int id, String clase, String icono, String nombre, String lugar, Date start, String end, String contenido, String extra, int estado, Persona persona, Tipo tipo) {
+    public Experiencia(Long id, String clase, String icono, String nombre, String lugar, Date start, String end, String contenido, String extra, int estado, Persona persona, Tipo tipo) {
         this.id = id;
         this.clase = clase;
         this.icono = icono;

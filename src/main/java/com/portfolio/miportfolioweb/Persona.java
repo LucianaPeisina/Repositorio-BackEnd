@@ -1,5 +1,6 @@
 package com.portfolio.miportfolioweb;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -20,10 +21,11 @@ public class Persona {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String nombre;
     private String apellido;
     private String domicilio;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date fechaNacimiento;
     private String telefono;
     private String sobreMi;
@@ -62,7 +64,7 @@ public class Persona {
     public Persona(){
     }
     
-    public Persona (int id, String nombre, String apellido, String domicilio, Date fechaNacimiento, String telefono, String sobreMi, String urlFoto, User usuario){
+    public Persona (Long id, String nombre, String apellido, String domicilio, Date fechaNacimiento, String telefono, String sobreMi, String urlFoto, User usuario){
         this.id = id; 
         this.nombre = nombre;
         this.apellido = apellido;
